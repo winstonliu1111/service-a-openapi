@@ -1,0 +1,20 @@
+states:
+  ports:
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/clusterId'
+    get:
+      summary: Get stat counters for all ports
+      operationId: getPortStats
+      description: >-
+        Get all stat counters for all ports
+      tags:
+        - States
+      responses:
+        '200':
+          $ref: 'components.yaml#/components/responses/NodeCountersPorts'
+        '400':
+          $ref: 'components.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: 'components.yaml#/components/responses/Unauthorized'
+        '500':
+          $ref: 'components.yaml#/components/responses/InternalServer'

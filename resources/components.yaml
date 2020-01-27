@@ -68,48 +68,12 @@ components:
           type: integer
           format: int64
           example: 0
-        rxAlignmentErrors:
-          type: integer
-          format: int64
-          example: 0
-        txPktsUcast:
-          type: integer
-          format: int64
-          example: 0
         portId:
           type: string
           example: "1/3/x1"
-        rxPktsUcast:
-          type: integer
-          format: int64
-          example: 1640366506
-        txPktsNUcast:
-          type: integer
-          format: int64
-          example: 0
-        rxPktsOversize:
-          type: integer
-          format: int64
-          example: 0
-        txPktsDiscards:
-          type: integer
-          format: int64
-          example: 0
-        rxPacketsRps:
-          type: integer
-          format: int64
-          example: 15193
         portType:
           type: string
           example: "network"
-        rxPktsJabber:
-          type: integer
-          format: int64
-          example: 0
-        rxPkts128to255:
-          type: integer
-          format: int64
-          example: 194928419
         txUtilization:
           type: number
           format: float
@@ -122,10 +86,6 @@ components:
           type: integer
           format: int64
           example: 11365007
-        rxPkts256to511:
-          type: integer
-          format: int64
-          example: 71975586
         txPacketsRps:
           type: integer
           format: int64

@@ -303,3 +303,12 @@ components:
                 $ref: '#/components/schemas/PortConfig'
     Empty200OK:
       description: "200 OK - successful response"
+    NodeCountersPorts:
+      description: "200 OK - NodeCountersPorts"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              portConfigs:
+                $ref: '#/components/schemas/NodeCountersPorts'

@@ -1,0 +1,346 @@
+components:
+  parameters:
+    clusterId:
+      description: "This is the cluster id in the query string, normally will be default-cluster"
+      in: query
+      name: clusterId
+      schema:
+        type: string
+        example: default-cluster
+      required: false
+    port_id:
+      description: >-
+          port_id in string
+      in: path
+      name: port_id
+      schema:
+        type: string
+        pattern: '\d+_\d+_\d+'
+        example: 1_3_11
+      required: true
+    alias:
+      description: alias for resource in the url path
+      in: path
+      name: alias
+      schema:
+        type: string
+        example: test123
+      required: true
+  schemas:
+    PortCounters:
+      type: object
+      description: Supported counters for a port
+      required:
+        - portId
+      properties:
+        adminStatus:
+          type: string
+          example: "up"
+        rxPktsNUcast:
+          type: integer
+          format: int64
+          example: 3642517
+        rxCRCErrors:
+          type: integer
+          format: int64
+          example: 0
+        rxPkts64:
+          type: integer
+          format: int64
+          example: 212025956
+        rxUtilization:
+          type: number
+          format: float
+          example: 0.93
+        txErrors:
+          type: integer
+          format: int64
+          example: 0
+        txOctets:
+          type: integer
+          format: int64
+          example: 0
+        txPktsPause:
+          type: integer
+          format: int64
+          example: 0
+        rxPktsFragment:
+          type: integer
+          format: int64
+          example: 0
+        rxAlignmentErrors:
+          type: integer
+          format: int64
+          example: 0
+        txPktsUcast:
+          type: integer
+          format: int64
+          example: 0
+        portId:
+          type: string
+          example: "1/3/x1"
+        rxPktsUcast:
+          type: integer
+          format: int64
+          example: 1640366506
+        txPktsNUcast:
+          type: integer
+          format: int64
+          example: 0
+        rxPktsOversize:
+          type: integer
+          format: int64
+          example: 0
+        txPktsDiscards:
+          type: integer
+          format: int64
+          example: 0
+        rxPacketsRps:
+          type: integer
+          format: int64
+          example: 15193
+        portType:
+          type: string
+          example: "network"
+        rxPktsJabber:
+          type: integer
+          format: int64
+          example: 0
+        rxPkts128to255:
+          type: integer
+          format: int64
+          example: 194928419
+        txUtilization:
+          type: number
+          format: float
+          example: 0
+        rxErrors:
+          type: integer
+          format: int64
+          example: 0
+        rxOctetsRps:
+          type: integer
+          format: int64
+          example: 11365007
+        rxPkts256to511:
+          type: integer
+          format: int64
+          example: 71975586
+        txPacketsRps:
+          type: integer
+          format: int64
+          example: 0
+        rxPktsDrops:
+          type: integer
+          format: int64
+          example: 0
+        rxPktsUndersize:
+          type: integer
+          format: int64
+          example: 0
+        rxPkts1024to1518:
+          type: integer
+          format: int64
+          example: 674589554
+        rxPktsDiscards:
+          type: integer
+          format: int64
+          example: 1644009023
+        txOctetsRps:
+          type: integer
+          format: int64
+          example: 0
+        rxPkts65to127:
+          type: integer
+          format: int64
+          example: 367368696
+        operStatus:
+          type: string
+          example: "up"
+        rxPkts512to1023:
+          type: integer
+          format: int64
+          example: 123120810
+        rxOctets:
+          type: integer
+          format: int64
+          example: 1145822311828
+        rxPktsPause:
+          type: integer
+          format: int64
+          example: 0
+        rxCollisions:
+          type: integer
+          format: int64
+          example: 0
+    PortCountersList:
+      type: array
+      description: A list of PortCounters
+      items:
+        $ref: '#/components/schemas/PortCounters'
+    NodeCountersPorts:
+      type: object
+      description: Properties of Node Counters for all ports
+      properties:
+        ports:
+          $ref: '#/components/schemas/PortCountersList'
+        sysUpTime:
+          type: integer
+          format: int64
+          example: 10105886720
+    Port:
+      type: object
+      description: Properties of a Port
+      properties:
+        comment:
+          type: string
+          example: "BPS 2/2"
+        adminStatus:
+          type: string
+          example: "up"
+        portId:
+          type: string
+          description: "This seems to be composed of {chassis id}/{slot id}/x{port id}"
+          example: "1/1/x9"
+        alias:
+          type: string
+          example: "BPSport2"
+        operStatus:
+          type: string
+          example: "up"
+        forceLinkUp:
+          type: boolean
+          example: false
+        mtu:
+          type: integer
+          example: 9600
+        configSpeed:
+          type: string
+          example: "10G"
+        duplex:
+          type: string
+          example: "full"
+        sfp:
+          $ref: '#/components/schemas/SFP'
+        operSpeed:
+          type: string
+          example: "10G"
+        portType:
+          type: string
+          description: "choices here: network, inline-net, tool, inline-tool, stack, hybrid"
+          example: "inline-net"
+        autoNeg:
+          type: boolean
+          example: false
+      required:
+        - portId
+    PortList:
+      type: array
+      description: A list of Ports
+      items:
+        $ref: '#/components/schemas/Port'
+    PortConfig:
+      type: object
+      description: Properties of a PortConfig
+      properties:
+        portId:
+          type: string
+          description: "This seems to be composed of {chassis id}/{slot id}/x{port id}"
+          example: "1/1/x14"
+        alarmThresholds:
+          $ref: '#/components/schemas/AlarmThresholds'
+        neighorDiscovery:
+          type: string
+          description: "type of neighbor discovery on the port, can be none, all, lldp, or cdp"
+          example: "none"
+        licensed:
+          type: boolean
+          description: "Is this port licensed?"
+          example: true
+        accessRoles:
+          $ref: '#/components/schemas/AccessRoles'
+        ingressVlanTag:
+          type: integer
+          description: Ingress VLAN tag to the port, 0 signifying no VLAN tag.
+          example: 0
+      required:
+        - portId
+    PortConfigList:
+      type: array
+      description: A list of PortConfigs
+      items:
+        $ref: '#/components/schemas/PortConfig'
+    Error:
+      type: object
+      description: An error resource
+      properties:
+        code:
+          type: string
+        msg:
+          type: string
+      required:
+        - code
+        - msg
+    ErrorList:
+      type: array
+      description: A list of Errors
+      items:
+        $ref: '#/components/schemas/Error'
+    Errors:
+      type: object
+      description: error object that holds an ErrorList
+      properties:
+        errors:
+          $ref: '#/components/schemas/ErrorList'
+  responses:
+    BadRequest:
+      description: "400 Bad Request - the request is invalid"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    Unauthorized:
+      description: "401 Unauthorized - the request was not authenticated"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    Forbidden:
+      description: "403 Forbidden - access denied"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    NotFound:
+      description: "404 Not Found - the entity was not found"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    MethodNotAllowed:
+      description: "405 Method Not Allowed"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    Conflict:
+      description: "409 Conflict - the entity already exists"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    InternalServer:
+      description: "500 Internal Server - an error occurred on the server"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    PortConfigs:
+      description: "200 OK - PortConfigs"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              portConfigs:
+                $ref: '#/components/schemas/PortConfigList'

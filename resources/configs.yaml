@@ -1,0 +1,20 @@
+configs:
+  portConfigs:
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/clusterId'
+    get:
+      summary: Get all portConfigs
+      operationId: getPortConfigs
+      description: >-
+        Get all portConfigs
+      tags:
+        - Configs
+      responses:
+        '200':
+          $ref: 'components.yaml#/components/responses/PortConfigs'
+        '400':
+          $ref: 'components.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: 'components.yaml#/components/responses/Unauthorized'
+        '500':
+          $ref: 'components.yaml#/components/responses/InternalServer'

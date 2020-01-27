@@ -24,9 +24,9 @@ servers:
 paths:
   # the /states endpoint
   /states/ports:
-    $ref: 'https://raw.githubusercontent.com/winstonliu1111/service-a-openapi/master/resources/states.yaml#/paths/~1ports'
+    $ref: 'resources/states.yaml#/paths/~1ports'
   # the /configs endpoint
   /configs/portConfigs:
-    $ref: 'https://raw.githubusercontent.com/winstonliu1111/service-a-openapi/master/resources/configs.yaml#/paths/~1portConfigs'
+    $ref: 'resources/configs.yaml#/paths/~1portConfigs'
   /configs/portConfigs/{port_id}:
-    $ref: 'https://raw.githubusercontent.com/winstonliu1111/service-a-openapi/master/resources/configs.yaml#/paths/~1portConfigs~1{portId}'
+    $ref: 'resources/configs.yaml#/paths/~1portConfigs~1{portId}'

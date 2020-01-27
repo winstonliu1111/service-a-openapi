@@ -332,3 +332,12 @@ components:
             properties:
               portConfigs:
                 $ref: '#/components/schemas/PortConfigList'
+    PortConfig:
+      description: "200 OK - PortConfig"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              portConfig:
+                $ref: '#/components/schemas/PortConfig'

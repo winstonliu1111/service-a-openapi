@@ -1,5 +1,5 @@
 configs:
-  portConfigs:
+  portConfigs:    # /configs/portConfigs
     parameters:
       - $ref: 'components.yaml#/components/parameters/clusterId'
     get:
@@ -16,5 +16,54 @@ configs:
           $ref: 'components.yaml#/components/responses/BadRequest'
         '401':
           $ref: 'components.yaml#/components/responses/Unauthorized'
+        '500':
+          $ref: 'components.yaml#/components/responses/InternalServer'
+  portConfigs/{portId}:
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/clusterId'
+      - $ref: 'components.yaml#/components/parameters/port_id'
+    get:
+      summary: Get port config info
+      operationId: getPortConfigById
+      description: >-
+        Get back port config of a port
+      tags:
+        - Configs
+      responses:
+        '200':
+          $ref: 'components.yaml#/components/responses/PortConfig'
+        '400':
+          $ref: 'components.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: 'components.yaml#/components/responses/Unauthorized'
+        '404':
+          $ref: 'components.yaml#/components/responses/NotFound'
+        '500':
+          $ref: 'components.yaml#/components/responses/InternalServer'      
+    put:
+      summary: Update the named port config
+      operationId: updatePortConfigById
+      description: >-
+        Update the named port config. Use this to update the port config.  Any unspecified properties 
+        will be reset to its default value by the server.  There is no DELETE on a portConfig, so to 
+        reset it, use PUT and only specify the portId in the request body.
+      tags:
+        - Configs
+      requestBody:
+        description: request body for updating a port config
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'components.yaml#/components/schemas/PortConfig'
+      responses:
+        '200':
+          $ref: 'components.yaml#/components/responses/Empty200OK'
+        '400':
+          $ref: 'components.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: 'components.yaml#/components/responses/Unauthorized'
+        '404':
+          $ref: 'components.yaml#/components/responses/NotFound'
         '500':
           $ref: 'components.yaml#/components/responses/InternalServer'

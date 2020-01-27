@@ -247,8 +247,6 @@ components:
           type: string
           description: "This seems to be composed of {chassis id}/{slot id}/x{port id}"
           example: "1/1/x14"
-        alarmThresholds:
-          $ref: '#/components/schemas/AlarmThresholds'
         neighorDiscovery:
           type: string
           description: "type of neighbor discovery on the port, can be none, all, lldp, or cdp"

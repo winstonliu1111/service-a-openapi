@@ -1,5 +1,5 @@
-configs:
-  portConfigs:    # /configs/portConfigs
+paths:
+  /portConfigs:    # /configs/portConfigs
     parameters:
       - $ref: 'components.yaml#/components/parameters/clusterId'
     get:
@@ -18,7 +18,7 @@ configs:
           $ref: 'components.yaml#/components/responses/Unauthorized'
         '500':
           $ref: 'components.yaml#/components/responses/InternalServer'
-  portConfigs/{portId}:
+  /portConfigs/{portId}:
     parameters:
       - $ref: 'components.yaml#/components/parameters/clusterId'
       - $ref: 'components.yaml#/components/parameters/port_id'

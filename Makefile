@@ -18,8 +18,8 @@ validate: ${SWAGGER_CLI_IMAGE}
 
 bundle: ${SWAGGER_CLI_IMAGE}
 	echo
-	mkdir -p out
-	${BUNDLER} bundle /tmp/openapi.yaml -o /tmp/out/openapi.yaml -t yaml
+	mkdir -p dist
+	${BUNDLER} bundle /tmp/openapi.yaml -o /tmp/dist/openapi.yaml -t yaml
 
 #${CFG_BINDINGS}:: % : 
 #	echo

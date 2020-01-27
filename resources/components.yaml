@@ -341,3 +341,5 @@ components:
             properties:
               portConfig:
                 $ref: '#/components/schemas/PortConfig'
+    Empty200OK:
+      description: "200 OK - successful response"

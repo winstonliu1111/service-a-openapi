@@ -1,0 +1,30 @@
+openapi: "3.0.2"
+info:
+  title: Service A Example
+  description: >-
+    This service has a path to get Port config, control and state
+  version: "0.0.1"
+  #TODO: add this later --> termsOfService: "https://nas.keysight.com/common/servicea/terms"
+  contact:
+    name: Service A Team
+    #TODO add this later --> url: "https://nas.keysight.com/common/servicea/api"
+    email: service_a@nas.keysight.com
+  license:
+    name: Apache-2.0
+    url: "https://nas.keysight.com/common/servicea/api/LICENSE"
+servers: 
+  - url: "https://{hostdns}/api/{basePath}"
+    description: Location of API
+    variables:
+      hostdns:
+        default: "localhost:5550"
+        description: "IP or DNS name of the server hosting the API"
+      basePath:
+        default: v1
+paths:
+  /states/ports:
+    $ref: 'https://raw.githubusercontent.com/winstonliu1111/service-a-openapi/master/resources/states.yaml#/states/ports'
+  /configs/portConfigs:
+    $ref: 'https://raw.githubusercontent.com/winstonliu1111/service-a-openapi/master/resources/configs.yaml#/configs/portConfigs'
+  /configs/portConfigs/{port_id}:
+    $ref: 'https://raw.githubusercontent.com/winstonliu1111/service-a-openapi/master/resources/configs.yaml#/configs/portConfigs~1{portId}'
